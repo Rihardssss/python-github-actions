@@ -1,14 +1,24 @@
-name: Run Python
+name: Run Python with second repo
 
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   run:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Clone second repo
+        run: git clone https://github.com/Rihardssss/python-client.git
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python app.py
+
+      - name: Run Python
+        run: python server/app.py
