@@ -11,17 +11,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Create server dir
-        run: mkdir -p dir_server
-
-      - name: Sync dev to server
-        run: cp dir_dev/app.py dir_server/app.py
+      - name: Sync dev to real local server
+        run: cp /Users/rihardsindars/python-github-actions/dir_dev/app.py /Users/rihardsindars/python-github-actions/dir_server/app.py
 
       - name: Show server file
-        run: cat dir_server/app.py
+        run: cat /Users/rihardsindars/python-github-actions/dir_server/app.py
 
-      - name: Run Python app
-        run: python3 dir_server/app.py
+      - name: Run Python and save output
+        run: python3 /Users/rihardsindars/python-github-actions/dir_server/app.py | tee /Users/rihardsindars/python-github-actions/dir_server/output.log
