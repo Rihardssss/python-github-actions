@@ -1,4 +1,4 @@
-name: Run Python
+name: Run Python locally
 
 on:
   push:
@@ -6,19 +6,17 @@ on:
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Create server dir
+        run: mkdir -p dir_server
 
       - name: Copy to server
         run: cp dir_dev/app.py dir_server/app.py
 
       - name: Run from server
-        run: python dir_server/app.py
+        run: python3 dir_server/app.py
