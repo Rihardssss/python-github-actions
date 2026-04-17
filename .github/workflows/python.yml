@@ -1,18 +1,27 @@
-name: Python CI
+name: Local Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   run:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Copy dev to server
+      - name: Create server dir
+        run: mkdir -p dir_server
+
+      - name: Sync dev to server
         run: cp dir_dev/app.py dir_server/app.py
 
-      - name: Run Python
+      - name: Show server file
+        run: cat dir_server/app.py
+
+      - name: Run Python app
         run: python3 dir_server/app.py
