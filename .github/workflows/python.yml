@@ -1,9 +1,8 @@
-name: Local Pipeline
+name: Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -11,11 +10,14 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Sync dev to real local server
-        run: cp /Users/rihardsindars/python-github-actions/dir_dev/app.py /Users/rihardsindars/python-github-actions/dir_server/app.py
-
-      - name: Show server file
+      - name: BEFORE
         run: cat /Users/rihardsindars/python-github-actions/dir_server/app.py
 
-      - name: Run Python and save output
-        run: python3 /Users/rihardsindars/python-github-actions/dir_server/app.py | tee /Users/rihardsindars/python-github-actions/dir_server/output.log
+      - name: COPY DEV -> SERVER
+        run: cp /Users/rihardsindars/python-github-actions/dir_dev/app.py /Users/rihardsindars/python-github-actions/dir_server/app.py
+
+      - name: AFTER
+        run: cat /Users/rihardsindars/python-github-actions/dir_server/app.py
+
+      - name: RUN
+        run: python3 /Users/rihardsindars/python-github-actions/dir_server/app.py
