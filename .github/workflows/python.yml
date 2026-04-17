@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -17,5 +17,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run Python app
-        run: python dir_dev/app.py
+      - name: Copy to server
+        run: cp dir_dev/app.py dir_server/app.py
+
+      - name: Run from server
+        run: python dir_server/app.py
