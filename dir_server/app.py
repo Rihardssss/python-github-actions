@@ -1,1 +1,1 @@
-print("SERVER OLD VERSION")
+print("DEV VERSION V1")

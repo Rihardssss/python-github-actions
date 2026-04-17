@@ -11,13 +11,20 @@ jobs:
 
     steps:
       - name: BEFORE
-        run: cat /Users/rihardsindars/python-github-actions/dir_server/app.py
+        run: |
+          echo "=== BEFORE ==="
+          cat /Users/rihardsindars/python-github-actions/dir_server/app.py
 
       - name: COPY DEV -> SERVER
-        run: cp /Users/rihardsindars/python-github-actions/dir_dev/app.py /Users/rihardsindars/python-github-actions/dir_server/app.py
+        run: |
+          cp /Users/rihardsindars/python-github-actions/dir_dev/app.py /Users/rihardsindars/python-github-actions/dir_server/app.py
 
       - name: AFTER
-        run: cat /Users/rihardsindars/python-github-actions/dir_server/app.py
+        run: |
+          echo "=== AFTER ==="
+          cat /Users/rihardsindars/python-github-actions/dir_server/app.py
 
       - name: RUN
-        run: python3 /Users/rihardsindars/python-github-actions/dir_server/app.py
+        run: |
+          echo "=== OUTPUT ==="
+          python3 /Users/rihardsindars/python-github-actions/dir_server/app.py
